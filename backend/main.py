@@ -25,7 +25,7 @@ from agents.tavily_chat_agent import TavilyChatAgent
 load_dotenv()
 
 app = FastAPI(
-    title="GreenGuardian API",
+    title="EcoShield API",
     description="API for environmental monitoring and analysis",
     version="0.1.0"
 )
@@ -110,7 +110,7 @@ class CopilotResponse(BaseModel):
 # Routes
 @app.get("/")
 async def root():
-    return {"message": "Welcome to GreenGuardian API"}
+    return {"message": "Welcome to EcoShield API"}
 
 @app.post("/api/environmental-data")
 async def get_environmental_data(query: LocationQuery):

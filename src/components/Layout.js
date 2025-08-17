@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
-              <h3 className="text-lg font-bold">GreenGuardian</h3>
+              <h3 className="text-lg font-bold">EcoShield</h3>
               <p className="text-sm text-green-200">AI-powered environmental monitoring</p>
             </div>
             <div className="flex space-x-4">
@@ -31,7 +31,7 @@ const Layout = ({ children }) => {
             </div>
           </div>
           <div className="mt-4 text-center text-sm text-green-300">
-            &copy; {new Date().getFullYear()} GreenGuardian. All rights reserved.
+            &copy; {new Date().getFullYear()} EcoShield. All rights reserved.
           </div>
         </div>
       </footer>

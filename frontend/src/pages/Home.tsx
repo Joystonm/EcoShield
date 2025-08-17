@@ -15,7 +15,7 @@ const Home: React.FC = () => {
                   Monitor Your Environment with AI-Powered Insights
                 </h1>
                 <p className="text-green-100 text-lg mb-8 max-w-lg">
-                  GreenGuardian provides real-time environmental monitoring, risk assessment, and personalized advice to help you understand and respond to environmental conditions in your area.
+                  EcoShield provides real-time environmental monitoring, risk assessment, and personalized advice to help you understand and respond to environmental conditions in your area.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link to="/map" className="px-6 py-3 bg-white text-green-700 font-medium rounded-lg hover:bg-green-50 transition-colors shadow-md">
@@ -133,7 +133,7 @@ const Home: React.FC = () => {
 
       {/* Use Cases Section */}
       <section className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">Who Uses GreenGuardian?</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">Who Uses EcoShield?</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-700">

@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <p className="text-sm">&copy; {new Date().getFullYear()} GreenGuardian - AI for Local Environmental Monitoring</p>
+            <p className="text-sm">&copy; {new Date().getFullYear()} EcoShield - AI for Environmental Monitoring</p>
           </div>
           <div className="flex space-x-4">
             <a href="#" className="text-sm hover:text-green-200 transition-colors">Privacy Policy</a>

@@ -1,4 +1,4 @@
--- Appwrite Database Schema for GreenGuardian
+-- Appwrite Database Schema for EcoShield
 
 -- Create database
 CREATE DATABASE greenguardian;

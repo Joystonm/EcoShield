@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def setup_appwrite():
-    """Set up Appwrite database and collections for GreenGuardian"""
-    print("Setting up Appwrite for GreenGuardian...")
+    """Set up Appwrite database and collections for EcoShield"""
+    print("Setting up Appwrite for EcoShield...")
     
     # Get credentials from environment
     endpoint = os.getenv("APPWRITE_ENDPOINT")
@@ -43,7 +43,7 @@ def setup_appwrite():
             headers=headers,
             json={
                 "databaseId": "greenguardian",
-                "name": "GreenGuardian"
+                "name": "EcoShield"
             }
         )
         
@@ -55,7 +55,7 @@ def setup_appwrite():
             # Get the database ID
             response = requests.get(f"{endpoint}/databases", headers=headers)
             databases = response.json().get('databases', [])
-            database_id = next((db.get('$id') for db in databases if db.get('name') == 'GreenGuardian'), None)
+            database_id = next((db.get('$id') for db in databases if db.get('name') == 'EcoShield'), None)
             if not database_id:
                 print("ERROR: Could not find 'greenguardian' database ID")
                 return False

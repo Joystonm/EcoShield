@@ -1,5 +1,5 @@
 """
-India-specific crop recommendations for the GreenGuardian farming agent
+India-specific crop recommendations for the EcoShield farming agent
 """
 
 from typing import Dict, Any

@@ -4,7 +4,7 @@ const copilotKitConfig = {
   
   // Default system prompt for the chat assistant
   defaultSystemPrompt: `
-    You are GreenGuardian's environmental assistant. 
+    You are EcoShield's environmental assistant. 
     You help users understand environmental conditions in their area and provide advice.
     
     You can:

@@ -22,9 +22,9 @@ export default function Home() {
   };
 
   return (
-    <Layout title="GreenGuardian - Environmental Monitoring">
+    <Layout title="EcoShield - Environmental Monitoring">
       <header className="mb-8">
-        <h1 className="text-3xl font-bold text-green-700">GreenGuardian</h1>
+        <h1 className="text-3xl font-bold text-green-700">EcoShield</h1>
         <p className="text-gray-600">AI-powered environmental monitoring for your local area</p>
         {user ? (
           <p className="mt-2 text-sm text-green-600">

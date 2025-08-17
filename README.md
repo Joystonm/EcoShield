@@ -1,9 +1,9 @@
-# GreenGuardian – AI for Local Environmental Monitoring
+# EcoShield – AI for Environmental Monitoring
 
-An AI-powered platform for monitoring and analyzing local environmental conditions.
+An AI-powered platform that acts as a protective shield for the environment by monitoring and analyzing real-time conditions.
 
 ## Overview
-GreenGuardian provides real-time environmental monitoring, risk assessment, and personalized advice to help users understand and respond to environmental conditions in their area.
+EcoShield provides real-time environmental monitoring, risk assessment, and personalized advice to help users understand and respond to environmental conditions in their area.
 
 ## Features
 - Interactive map visualization of pollution and risk zones
@@ -69,7 +69,7 @@ GreenGuardian provides real-time environmental monitoring, risk assessment, and 
 
 ## Project Structure
 ```
-GreenGuardian/
+EcoShield/
 ├── frontend/       → React.js + CopilotKit UI
 ├── backend/        → Python FastAPI with agent services
 ├── services/       → Tavily, Mem0, Appwrite integrations
