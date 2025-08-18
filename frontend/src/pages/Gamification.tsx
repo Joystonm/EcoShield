@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Challenges from '../components/gamification/Challenges';
+
 import Leaderboard from '../components/gamification/Leaderboard';
 
 const Gamification: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'challenges' | 'leaderboard'>('challenges');
+  const [activeTab, setActiveTab] = useState<'challenges' | 'leaderboard'>('leaderboard');
 
   return (
     <div>
@@ -76,7 +76,10 @@ const Gamification: React.FC = () => {
       </div>
       
       {activeTab === 'challenges' ? (
-        <Challenges />
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-xl font-medium mb-4">Environmental Challenges</h2>
+          <p className="text-gray-600">Challenge features are currently being updated. Check back soon for new environmental challenges!</p>
+        </div>
       ) : (
         <Leaderboard />
       )}

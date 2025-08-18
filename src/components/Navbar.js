@@ -69,16 +69,7 @@ const Navbar = () => {
               >
                 Farming
               </Link>
-              <Link
-                to="/challenges"
-                className={`${
-                  location.pathname === '/challenges'
-                    ? 'bg-green-800 text-white'
-                    : 'text-green-100 hover:bg-green-600 hover:text-white'
-                } px-3 py-2 rounded-md text-sm font-medium`}
-              >
-                Challenges
-              </Link>
+
               <Link
                 to="/emergency"
                 className={`${
@@ -89,16 +80,7 @@ const Navbar = () => {
               >
                 Emergency
               </Link>
-              <Link
-                to="/settings"
-                className={`${
-                  location.pathname === '/settings'
-                    ? 'bg-green-800 text-white'
-                    : 'text-green-100 hover:bg-green-600 hover:text-white'
-                } px-3 py-2 rounded-md text-sm font-medium`}
-              >
-                Settings
-              </Link>
+
             </div>
           </div>
           
@@ -141,14 +123,7 @@ const Navbar = () => {
                       >
                         Your Profile
                       </Link>
-                      <Link
-                        to="/settings"
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        role="menuitem"
-                        onClick={() => setIsProfileOpen(false)}
-                      >
-                        Settings
-                      </Link>
+
                       <button
                         onClick={() => {
                           setIsProfileOpen(false);
@@ -275,17 +250,7 @@ const Navbar = () => {
             >
               Farming
             </Link>
-            <Link
-              to="/challenges"
-              className={`${
-                location.pathname === '/challenges'
-                  ? 'bg-green-800 text-white'
-                  : 'text-green-100 hover:bg-green-600 hover:text-white'
-              } block px-3 py-2 rounded-md text-base font-medium`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Challenges
-            </Link>
+
             <Link
               to="/emergency"
               className={`${
@@ -297,17 +262,7 @@ const Navbar = () => {
             >
               Emergency
             </Link>
-            <Link
-              to="/settings"
-              className={`${
-                location.pathname === '/settings'
-                  ? 'bg-green-800 text-white'
-                  : 'text-green-100 hover:bg-green-600 hover:text-white'
-              } block px-3 py-2 rounded-md text-base font-medium`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Settings
-            </Link>
+
           </div>
           
           {/* Auth buttons - mobile */}
@@ -333,13 +288,7 @@ const Navbar = () => {
                   >
                     Your Profile
                   </Link>
-                  <Link
-                    to="/settings"
-                    className="block px-4 py-2 text-base font-medium text-green-100 hover:text-white hover:bg-green-600"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Settings
-                  </Link>
+
                   <button
                     onClick={() => {
                       setIsMenuOpen(false);

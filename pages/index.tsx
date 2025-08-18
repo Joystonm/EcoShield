@@ -5,13 +5,10 @@ import RiskSummary from '../components/RiskSummary';
 import AdvicePanel from '../components/AdvicePanel';
 import ChatButton from '../components/ChatButton';
 import UserProfileSelector from '../components/UserProfileSelector';
-import { useAuth } from '../contexts/AuthContext';
-import Link from 'next/link';
 
 export default function Home() {
   const [userProfile, setUserProfile] = useState('citizen');
   const [location, setLocation] = useState('');
-  const { user, isAuthenticated } = useAuth();
 
   const handleProfileChange = (profile: string) => {
     setUserProfile(profile);
@@ -26,26 +23,6 @@ export default function Home() {
       <header className="mb-8">
         <h1 className="text-3xl font-bold text-green-700">EcoShield</h1>
         <p className="text-gray-600">AI-powered environmental monitoring for your local area</p>
-        {user ? (
-          <p className="mt-2 text-sm text-green-600">
-            Welcome back, {user.name}!
-          </p>
-        ) : (
-          <div className="mt-4">
-            <Link 
-              href="/login" 
-              className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
-            >
-              Log In
-            </Link>
-            <Link 
-              href="/register" 
-              className="inline-block bg-white border border-green-600 hover:bg-green-50 text-green-600 font-bold py-2 px-4 rounded"
-            >
-              Sign Up
-            </Link>
-          </div>
-        )}
       </header>
 
       <UserProfileSelector onProfileChange={handleProfileChange} />

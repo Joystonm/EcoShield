@@ -6,15 +6,10 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import MapView from './pages/MapView';
 import HistoricalData from './pages/HistoricalData';
-import Settings from './pages/Settings';
 import FarmingTools from './pages/FarmingTools';
 import SatelliteAnalysis from './pages/SatelliteAnalysis';
 import Gamification from './pages/Gamification';
 import EmergencyResponse from './pages/EmergencyResponse';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
 import EnvironmentalChat from './components/chat/EnvironmentalChat';
 import TestPage from './pages/TestPage';
 import '@copilotkit/react-ui/styles.css';
@@ -39,11 +34,6 @@ function App() {
           <Route path="/satellite" element={<SatelliteAnalysis />} />
           <Route path="/gamification" element={<Gamification />} />
           <Route path="/emergency" element={<EmergencyResponse />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/test" element={<TestPage />} />
         </Routes>
       </main>
