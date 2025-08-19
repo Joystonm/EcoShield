@@ -2,7 +2,7 @@ import json
 from typing import Dict, List, Any, Optional
 import os
 from dotenv import load_dotenv
-import openai
+import httpx
 from datetime import datetime
 
 # Import India-specific crop recommendations
@@ -24,15 +24,13 @@ class FarmingAgent:
             tavily_service: Initialized Tavily service for data retrieval
         """
         self.tavily_service = tavily_service
-        self.openai_api_key = os.getenv("OPENAI_API_KEY")
+        self.keywords_ai_api_key = os.getenv("KEYWORDS_AI_API_KEY")
         
-        # Check if OpenAI API key is valid
-        if self.openai_api_key and self.openai_api_key != "not-used":
-            self.openai_client = openai.OpenAI(api_key=self.openai_api_key)
-            self.use_openai = True
+        # Check if Keywords AI API key is valid
+        if self.keywords_ai_api_key:
+            self.use_ai = True
         else:
-            self.openai_client = None
-            self.use_openai = False
+            self.use_ai = False
             print("WARNING: OpenAI API key not set or invalid. Using default recommendations only.")
     
     async def get_crop_recommendations(self, location: str, season: Optional[str] = None) -> Dict[str, Any]:

@@ -2,14 +2,13 @@ import json
 from typing import Dict, Any, Optional
 import os
 from dotenv import load_dotenv
-import openai
 
 # Load environment variables
 load_dotenv()
 
 class PollutionAgent:
     """
-    Agent that uses Tavily to search for pollution data and then processes it with LLM
+    Agent that uses Tavily to search for pollution data
     """
     
     def __init__(self, tavily_service):
@@ -20,7 +19,6 @@ class PollutionAgent:
             tavily_service: Initialized Tavily service
         """
         self.tavily_service = tavily_service
-        self.openai_client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         
     async def get_pollution_data(self, location: str, radius_km: float = 5.0) -> Dict[str, Any]:
         """
@@ -34,23 +32,28 @@ class PollutionAgent:
             Dictionary containing processed pollution data
         """
         # Construct search query
-        search_query = f"current air pollution data in {location} PM2.5 AQI"
+        search_query = f"current air pollution data in {location} PM2.5 AQI air quality index"
         
-        # Get search results from Tavily
-        search_results = await self.tavily_service.search(
-            query=search_query,
-            search_depth="advanced",
-            include_domains=["airnow.gov", "iqair.com", "epa.gov", "who.int"]
-        )
-        
-        # Extract relevant information using LLM
-        pollution_data = await self._extract_pollution_data(search_results, location)
-        
-        return pollution_data
+        try:
+            # Get search results from Tavily
+            search_results = await self.tavily_service.search(
+                query=search_query,
+                search_depth="advanced",
+                include_domains=["airnow.gov", "iqair.com", "epa.gov", "who.int", "purpleair.com"]
+            )
+            
+            # Extract relevant information from search results
+            pollution_data = self._extract_pollution_data_simple(search_results, location)
+            
+            return pollution_data
+            
+        except Exception as e:
+            print(f"Error getting pollution data: {str(e)}")
+            return self._create_default_pollution_data(location)
     
-    async def _extract_pollution_data(self, search_results: Dict[str, Any], location: str) -> Dict[str, Any]:
+    def _extract_pollution_data_simple(self, search_results: Dict[str, Any], location: str) -> Dict[str, Any]:
         """
-        Extract structured pollution data from search results using LLM
+        Extract structured pollution data from search results using simple parsing
         
         Args:
             search_results: Raw search results from Tavily
@@ -59,56 +62,89 @@ class PollutionAgent:
         Returns:
             Structured pollution data
         """
-        # Prepare context from search results
-        context = ""
-        for result in search_results.get("results", []):
-            context += f"Source: {result.get('url')}\n"
-            context += f"Content: {result.get('content')}\n\n"
+        # Initialize default data
+        pollution_data = self._create_default_pollution_data(location)
         
-        # Prepare prompt for LLM
-        prompt = f"""
-        You are an environmental data analyst. Extract structured pollution data for {location} from the following search results.
-        If specific data is not available, make reasonable estimates based on nearby areas or general information.
+        # Extract information from search results
+        results = search_results.get("results", [])
         
-        {context}
+        # Look for AQI and pollution data in the results
+        for result in results:
+            content = result.get("content", "").lower()
+            
+            # Try to extract AQI value
+            if "aqi" in content or "air quality index" in content:
+                # Simple regex-like extraction for AQI values
+                words = content.split()
+                for i, word in enumerate(words):
+                    if word in ["aqi", "index"] and i > 0:
+                        try:
+                            # Look for numbers before or after AQI mention
+                            for j in range(max(0, i-3), min(len(words), i+4)):
+                                if words[j].isdigit():
+                                    aqi_value = int(words[j])
+                                    if 0 <= aqi_value <= 500:  # Valid AQI range
+                                        pollution_data["air_quality"]["aqi"] = aqi_value
+                                        pollution_data["air_quality"]["category"] = self._get_aqi_category(aqi_value)
+                                        break
+                        except (ValueError, IndexError):
+                            continue
+            
+            # Try to extract PM2.5 values
+            if "pm2.5" in content or "pm 2.5" in content:
+                words = content.replace("pm2.5", " pm2.5 ").replace("pm 2.5", " pm2.5 ").split()
+                for i, word in enumerate(words):
+                    if "pm2.5" in word:
+                        try:
+                            # Look for numbers near PM2.5 mention
+                            for j in range(max(0, i-2), min(len(words), i+3)):
+                                if words[j].replace(".", "").isdigit():
+                                    pm25_value = float(words[j])
+                                    if 0 <= pm25_value <= 500:  # Reasonable PM2.5 range
+                                        pollution_data["air_quality"]["pm25"] = pm25_value
+                                        break
+                        except (ValueError, IndexError):
+                            continue
+            
+            # Extract health implications
+            if any(word in content for word in ["unhealthy", "hazardous", "moderate", "good"]):
+                if "unhealthy" in content:
+                    pollution_data["health_implications"] = "Air quality is unhealthy for sensitive groups or all people."
+                elif "hazardous" in content:
+                    pollution_data["health_implications"] = "Air quality is hazardous. Everyone should avoid outdoor activities."
+                elif "moderate" in content:
+                    pollution_data["health_implications"] = "Air quality is moderate. Sensitive people should consider limiting outdoor activities."
+                elif "good" in content:
+                    pollution_data["health_implications"] = "Air quality is good. No health concerns."
         
-        Extract and return the following information in JSON format:
-        1. air_quality: Object containing AQI (Air Quality Index), PM2.5 level, PM10 level, ozone level, and other pollutants if available
-        2. water_quality: Object containing water quality information if available
-        3. primary_pollutants: Array of main pollutants in the area
-        4. health_implications: Brief description of health implications
-        5. sources: Array of main pollution sources in the area
-        6. data_confidence: High, Medium, or Low based on the specificity and recency of data
+        # Set data confidence based on how much data we found
+        if pollution_data["air_quality"]["aqi"] != 50 or pollution_data["air_quality"]["pm25"] != 12.0:
+            pollution_data["data_confidence"] = "Medium"
         
-        Return ONLY the JSON object without any additional text.
+        return pollution_data
+    
+    def _get_aqi_category(self, aqi: int) -> str:
         """
+        Get AQI category based on AQI value
         
-        # Call OpenAI API
-        response = self.openai_client.chat.completions.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "You are an environmental data analyst that extracts structured pollution data from search results."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.1,
-            max_tokens=1000
-        )
-        
-        # Extract and parse JSON response
-        try:
-            content = response.choices[0].message.content
-            # Find JSON in the response
-            json_start = content.find('{')
-            json_end = content.rfind('}') + 1
-            if json_start >= 0 and json_end > json_start:
-                json_str = content[json_start:json_end]
-                return json.loads(json_str)
-            else:
-                # Fallback to default structure if JSON parsing fails
-                return self._create_default_pollution_data(location)
-        except Exception as e:
-            print(f"Error parsing LLM response: {str(e)}")
-            return self._create_default_pollution_data(location)
+        Args:
+            aqi: AQI value
+            
+        Returns:
+            AQI category string
+        """
+        if aqi <= 50:
+            return "Good"
+        elif aqi <= 100:
+            return "Moderate"
+        elif aqi <= 150:
+            return "Unhealthy for Sensitive Groups"
+        elif aqi <= 200:
+            return "Unhealthy"
+        elif aqi <= 300:
+            return "Very Unhealthy"
+        else:
+            return "Hazardous"
     
     def _create_default_pollution_data(self, location: str) -> Dict[str, Any]:
         """

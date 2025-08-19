@@ -21,7 +21,7 @@ const Header: React.FC = () => {
             <Link to="/map" className="hover:text-green-200 transition-colors">Map View</Link>
             <Link to="/satellite" className="hover:text-green-200 transition-colors">Satellite</Link>
             <Link to="/farming" className="hover:text-green-200 transition-colors">Farming</Link>
-            <Link to="/gamification" className="hover:text-green-200 transition-colors">Gamification</Link>
+
             <Link to="/emergency" className="hover:text-green-200 transition-colors">Emergency</Link>
           </nav>
         </div>
@@ -44,7 +44,7 @@ const Header: React.FC = () => {
           <Link to="/map" className="block py-2 hover:text-green-200 transition-colors" onClick={() => setIsMenuOpen(false)}>Map View</Link>
           <Link to="/satellite" className="block py-2 hover:text-green-200 transition-colors" onClick={() => setIsMenuOpen(false)}>Satellite</Link>
           <Link to="/farming" className="block py-2 hover:text-green-200 transition-colors" onClick={() => setIsMenuOpen(false)}>Farming</Link>
-          <Link to="/gamification" className="block py-2 hover:text-green-200 transition-colors" onClick={() => setIsMenuOpen(false)}>Gamification</Link>
+
           <Link to="/emergency" className="block py-2 hover:text-green-200 transition-colors" onClick={() => setIsMenuOpen(false)}>Emergency</Link>
         </nav>
       )}

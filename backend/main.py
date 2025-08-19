@@ -17,8 +17,8 @@ from services.keywordsai_wrapper import KeywordsAIWrapper
 from agents.pollution_agent import PollutionAgent
 from agents.advice_agent import AdviceAgent
 from agents.memory_agent import MemoryAgent
-from agents.farming_agent_new import FarmingAgent
-from agents.urban_planning_agent import UrbanPlanningAgent
+# from agents.farming_agent_new import FarmingAgent  # Temporarily disabled - uses OpenAI
+# from agents.urban_planning_agent import UrbanPlanningAgent  # Temporarily disabled - uses OpenAI
 from agents.tavily_chat_agent import TavilyChatAgent
 
 # Load environment variables
@@ -54,8 +54,8 @@ keywords_ai = KeywordsAIWrapper(api_key=os.getenv("KEYWORDS_AI_API_KEY"))
 pollution_agent = PollutionAgent(tavily_service)
 advice_agent = AdviceAgent()
 memory_agent = MemoryAgent(mem0_service)
-farming_agent = FarmingAgent(tavily_service)
-urban_planning_agent = UrbanPlanningAgent(tavily_service)
+# farming_agent = FarmingAgent(tavily_service)  # Temporarily disabled - uses OpenAI
+# urban_planning_agent = UrbanPlanningAgent(tavily_service)  # Temporarily disabled - uses OpenAI
 tavily_chat_agent = TavilyChatAgent(tavily_service)
 
 # Models

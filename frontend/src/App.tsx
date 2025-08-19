@@ -8,7 +8,7 @@ import MapView from './pages/MapView';
 import HistoricalData from './pages/HistoricalData';
 import FarmingTools from './pages/FarmingTools';
 import SatelliteAnalysis from './pages/SatelliteAnalysis';
-import Gamification from './pages/Gamification';
+
 import EmergencyResponse from './pages/EmergencyResponse';
 import EnvironmentalChat from './components/chat/EnvironmentalChat';
 import TestPage from './pages/TestPage';
@@ -32,7 +32,7 @@ function App() {
           <Route path="/historical" element={<HistoricalData />} />
           <Route path="/farming" element={<FarmingTools />} />
           <Route path="/satellite" element={<SatelliteAnalysis />} />
-          <Route path="/gamification" element={<Gamification />} />
+
           <Route path="/emergency" element={<EmergencyResponse />} />
           <Route path="/test" element={<TestPage />} />
         </Routes>
