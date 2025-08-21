@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Primary eco-green (dominant brand color)
         green: {
           50: '#f0fdf4',
           100: '#dcfce7',
@@ -17,6 +18,58 @@ module.exports = {
           700: '#15803d',
           800: '#166534',
           900: '#14532d',
+        },
+        // Secondary earthy tones
+        earth: {
+          50: '#faf9f7',
+          100: '#f5f2ed',
+          200: '#e8e1d4',
+          300: '#d9ccb8',
+          400: '#c7b299',
+          500: '#b5967d',
+          600: '#a17c63',
+          700: '#8b6b52',
+          800: '#735746',
+          900: '#5d473a',
+        },
+        // Neutral grays with warm undertones
+        sage: {
+          50: '#f8f9f8',
+          100: '#f1f3f1',
+          200: '#e3e7e3',
+          300: '#d1d8d1',
+          400: '#b8c4b8',
+          500: '#9bab9b',
+          600: '#7d8f7d',
+          700: '#677567',
+          800: '#556155',
+          900: '#475047',
+        },
+        // Sky blue accents
+        sky: {
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',
+        },
+        // Warm yellow accents
+        sun: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
         },
       },
     },

@@ -147,7 +147,7 @@ const Dashboard: React.FC = () => {
         <div className="lg:col-span-3">
           {!currentLocation ? (
             <div className="bg-white p-8 rounded-lg shadow-md text-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-green-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-sky-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -156,7 +156,7 @@ const Dashboard: React.FC = () => {
             </div>
           ) : loading ? (
             <div className="bg-white p-8 rounded-lg shadow-md text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-700 mx-auto mb-4"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
               <p>Loading environmental data...</p>
             </div>
           ) : error ? (

@@ -2,48 +2,132 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f9fafb;
+/* Enhanced global styles for EcoShield */
+@layer base {
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    @apply bg-gradient-to-br from-sage-50 to-earth-50 text-sage-900;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  * {
+    @apply scroll-smooth;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components {
+  /* Enhanced risk indicators with new color palette */
+  .risk-low {
+    @apply bg-green-50 border-l-4 border-green-500 text-green-800;
+  }
+
+  .risk-medium {
+    @apply bg-sun-50 border-l-4 border-sun-500 text-sun-800;
+  }
+
+  .risk-high {
+    @apply bg-red-50 border-l-4 border-red-500 text-red-800;
+  }
+
+  /* Enhanced chat container */
+  .chat-container {
+    @apply rounded-2xl shadow-2xl border border-sage-200;
+  }
+
+  /* Custom button styles */
+  .btn-primary {
+    @apply bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:from-green-700 hover:to-green-800 hover:shadow-xl transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-gradient-to-r from-earth-500 to-earth-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:from-earth-600 hover:to-earth-700 hover:shadow-xl transition-all duration-300;
+  }
+
+  .btn-accent {
+    @apply bg-gradient-to-r from-sky-500 to-sky-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:from-sky-600 hover:to-sky-700 hover:shadow-xl transition-all duration-300;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-2xl shadow-lg border border-sage-100 hover:shadow-2xl transition-all duration-300;
+  }
+
+  .card-header {
+    @apply bg-gradient-to-r from-sage-100 to-earth-100 px-6 py-4 rounded-t-2xl border-b border-sage-200;
+  }
 }
 
+/* Leaflet map styling */
 .leaflet-container {
   width: 100%;
   height: 100%;
   min-height: 500px;
-  border-radius: 8px;
+  @apply rounded-2xl shadow-lg;
 }
 
-.risk-low {
-  background-color: #d1fae5;
-  border-left: 4px solid #10b981;
-}
-
-.risk-medium {
-  background-color: #fef3c7;
-  border-left: 4px solid #f59e0b;
-}
-
-.risk-high {
-  background-color: #fee2e2;
-  border-left: 4px solid #ef4444;
-}
-
-.chat-container {
-  border-radius: 8px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
+/* Enhanced background pattern */
 .bg-pattern {
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Custom gradient backgrounds */
+.bg-eco-gradient {
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 50%, #7d8f7d 100%);
+}
+
+.bg-earth-gradient {
+  background: linear-gradient(135deg, #8b6b52 0%, #b5967d 50%, #d9ccb8 100%);
+}
+
+.bg-sky-gradient {
+  background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 50%, #7dd3fc 100%);
+}
+
+/* Text gradients */
+.text-eco-gradient {
+  background: linear-gradient(135deg, #15803d, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation enhancements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-sage-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-sage-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-sage-500;
+}
+
+/* Focus styles for accessibility */
+.focus-visible:focus {
+  @apply outline-none ring-2 ring-green-500 ring-offset-2;
 }

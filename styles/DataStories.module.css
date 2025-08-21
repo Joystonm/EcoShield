@@ -1,0 +1,468 @@
+/* DataStories.module.css */
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: white;
+}
+
+.storyHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: rgba(15, 23, 42, 0.8);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.storyHeader h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #60a5fa, #34d399);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.storyHeader p {
+  font-size: 1.2rem;
+  color: #cbd5e1;
+  font-weight: 300;
+}
+
+.chartArea {
+  margin-bottom: 2rem;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chartContainer {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Bar Chart Styles */
+.barChart {
+  display: flex;
+  align-items: end;
+  justify-content: space-around;
+  height: 300px;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.barContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 80px;
+}
+
+.barContainer .chart-bar {
+  width: 100%;
+  min-height: 4px;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+}
+
+.barLabel {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.barValue {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+}
+
+/* Line Chart Styles */
+.lineChart {
+  position: relative;
+  height: 300px;
+}
+
+.chartSvg {
+  width: 100%;
+  height: 250px;
+  margin-bottom: 1rem;
+}
+
+.lineLabels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.lineLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.lineLabel span:first-child {
+  margin-bottom: 0.25rem;
+}
+
+.lineLabel .animated-number {
+  font-weight: 600;
+  color: white;
+}
+
+/* Area Chart Styles */
+.areaChart {
+  position: relative;
+  height: 300px;
+}
+
+.areaLabels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  margin-top: 1rem;
+}
+
+.areaLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.areaLabel span:first-child {
+  margin-bottom: 0.25rem;
+}
+
+.areaLabel .animated-number {
+  font-weight: 600;
+  color: white;
+}
+
+/* Story Description */
+.storyDescription {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.storyDescription p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+  margin-bottom: 1rem;
+}
+
+.dataUnit {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.dataUnit span {
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.controlButton {
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.controlButton:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(96, 165, 250, 0.5);
+  transform: translateY(-2px);
+}
+
+.controlButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.playButton {
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: 2px solid #34d399;
+  border-radius: 12px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.playButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+}
+
+.playButton.playing {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-color: #fbbf24;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+}
+
+.playButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Timeline */
+.timeline {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.timelineItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  text-align: center;
+}
+
+.timelineItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.timelineItem.active {
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.1);
+}
+
+.timelineNumber {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.timelineItem.active .timelineNumber {
+  background: currentColor;
+  color: #0f172a;
+}
+
+.timelineTitle {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Progress Indicator */
+.progressContainer {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progressBar {
+  height: 100%;
+  border-radius: 2px;
+  transition: all 0.5s ease;
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .storyHeader {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .storyHeader h2 {
+    font-size: 2rem;
+  }
+  
+  .storyHeader p {
+    font-size: 1rem;
+  }
+  
+  .chartContainer {
+    padding: 1rem;
+  }
+  
+  .barChart {
+    height: 250px;
+    gap: 0.5rem;
+  }
+  
+  .lineChart,
+  .areaChart {
+    height: 250px;
+  }
+  
+  .controls {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .controlButton,
+  .playButton {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .timeline {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .timelineItem {
+    width: 100%;
+    max-width: 300px;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+  
+  .timelineNumber {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .storyHeader h2 {
+    font-size: 1.5rem;
+  }
+  
+  .barChart {
+    height: 200px;
+    padding: 0.5rem;
+  }
+  
+  .barContainer {
+    max-width: 60px;
+  }
+  
+  .barLabel,
+  .lineLabel,
+  .areaLabel {
+    font-size: 0.7rem;
+  }
+  
+  .chartSvg {
+    height: 180px;
+  }
+  
+  .storyDescription p {
+    font-size: 1rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .controlButton,
+  .playButton,
+  .timelineItem {
+    transition: none;
+  }
+  
+  .controlButton:hover,
+  .playButton:hover,
+  .timelineItem:hover {
+    transform: none;
+  }
+  
+  .chart-bar,
+  .chart-point,
+  .chart-area {
+    transition: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .storyHeader,
+  .chartContainer,
+  .storyDescription,
+  .timeline {
+    background: rgba(0, 0, 0, 0.9);
+    border-color: white;
+  }
+  
+  .controlButton,
+  .timelineItem {
+    border-color: #666;
+  }
+  
+  .controlButton:hover,
+  .timelineItem:hover {
+    border-color: white;
+  }
+  
+  .timelineItem.active {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.2);
+  }
+}

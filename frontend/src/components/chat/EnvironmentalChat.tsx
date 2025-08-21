@@ -96,12 +96,15 @@ const EnvironmentalChat: React.FC = () => {
   };
 
   return (
-    <div className="chat-container bg-white rounded-lg shadow-md overflow-hidden">
-      <div className="bg-green-700 text-white p-3 flex justify-between items-center">
-        <h3 className="font-medium">Environmental Assistant</h3>
+    <div className="chat-container bg-white rounded-2xl shadow-2xl overflow-hidden border border-sage-200">
+      <div className="bg-gradient-to-r from-green-700 to-green-600 text-white p-4 flex justify-between items-center">
+        <div>
+          <h3 className="font-semibold text-lg">Environmental Assistant</h3>
+          <p className="text-xs text-green-100">AI-powered environmental guidance</p>
+        </div>
         {userLocation && (
-          <span className="text-xs bg-green-600 px-2 py-1 rounded-full">
-            Location Active
+          <span className="text-xs bg-sun-400/20 text-sun-200 px-3 py-1 rounded-full">
+            📍 Location Active
           </span>
         )}
       </div>
@@ -113,10 +116,10 @@ const EnvironmentalChat: React.FC = () => {
             className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div 
-              className={`max-w-[80%] rounded-lg p-3 ${
+              className={`max-w-[80%] rounded-2xl p-4 shadow-sm ${
                 message.role === 'user' 
-                  ? 'bg-green-100 text-green-900' 
-                  : 'bg-gray-100 text-gray-800'
+                  ? 'bg-gradient-to-r from-green-600 to-green-700 text-white' 
+                  : 'bg-sage-100 text-sage-900 border border-sage-200'
               }`}
             >
               <p className="whitespace-pre-wrap">{message.content}</p>
@@ -126,21 +129,21 @@ const EnvironmentalChat: React.FC = () => {
         
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-gray-100 text-gray-800 rounded-lg p-3 max-w-[80%]">
+            <div className="bg-sage-100 text-sage-800 rounded-2xl p-4 max-w-[80%] border border-sage-200 shadow-sm">
               <div className="flex space-x-2">
-                <div className="w-2 h-2 rounded-full bg-green-700 animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                <div className="w-2 h-2 rounded-full bg-green-700 animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                <div className="w-2 h-2 rounded-full bg-green-700 animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-sage-500 animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-sage-500 animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 rounded-full bg-sage-500 animate-bounce" style={{ animationDelay: '300ms' }}></div>
               </div>
             </div>
           </div>
         )}
       </div>
       
-      <div className="border-t p-3 flex">
+      <div className="border-t border-sage-200 p-4 bg-sage-50">
         <form onSubmit={handleSubmit} className="flex w-full">
           <input
-            className="flex-grow p-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="flex-grow p-3 border border-sage-300 rounded-l-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white text-sage-900 placeholder-sage-500"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder={getPlaceholderText()}
@@ -148,10 +151,10 @@ const EnvironmentalChat: React.FC = () => {
           />
           <button 
             type="submit"
-            className={`px-4 rounded-r-lg transition-colors ${
+            className={`px-6 rounded-r-xl transition-all duration-200 ${
               isLoading 
-                ? 'bg-gray-400 text-white cursor-not-allowed' 
-                : 'bg-green-700 text-white hover:bg-green-800'
+                ? 'bg-sage-400 text-white cursor-not-allowed' 
+                : 'bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800 hover:shadow-lg'
             }`}
             disabled={isLoading}
           >
