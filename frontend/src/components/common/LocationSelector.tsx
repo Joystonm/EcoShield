@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { geocodeLocation, GeocodingResult } from '../../services/geocoding';
 
 interface Location {
@@ -9,58 +9,20 @@ interface Location {
 }
 
 interface LocationSelectorProps {
-  savedLocations: Location[];
   onLocationSelect: (location: Location) => void;
   currentLocation?: Location;
 }
 
 const LocationSelector: React.FC<LocationSelectorProps> = ({ 
-  savedLocations, 
   onLocationSelect,
   currentLocation
 }) => {
-  const [isUsingCurrentLocation, setIsUsingCurrentLocation] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredLocations, setFilteredLocations] = useState<Location[]>(savedLocations);
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
   const [searchResults, setSearchResults] = useState<Location[]>([]);
 
-  useEffect(() => {
-    if (searchQuery) {
-      // Filter saved locations based on search query
-      const filtered = savedLocations.filter(location => 
-        location.name.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredLocations(filtered);
-    } else {
-      setFilteredLocations(savedLocations);
-    }
-  }, [searchQuery, savedLocations]);
 
-  const handleUseCurrentLocation = () => {
-    setIsUsingCurrentLocation(true);
-    setSearchError(null);
-    
-    // Use the browser's geolocation API
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const currentLoc: Location = {
-          id: 'current',
-          name: 'Current Location',
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        onLocationSelect(currentLoc);
-        setIsUsingCurrentLocation(false);
-      },
-      (error) => {
-        console.error('Error getting location:', error);
-        setIsUsingCurrentLocation(false);
-        setSearchError('Could not access your current location. Please check your browser permissions.');
-      }
-    );
-  };
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) return;
@@ -106,22 +68,8 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
     }
   };
 
-  // Combine saved locations and search results, removing duplicates
-  const allLocations = React.useMemo(() => {
-    const combinedLocations = [...filteredLocations];
-    
-    // Add search results if they don't already exist in the list
-    searchResults.forEach(result => {
-      if (!combinedLocations.some(loc => 
-        (loc.lat === result.lat && loc.lng === result.lng) || 
-        loc.name.toLowerCase() === result.name.toLowerCase()
-      )) {
-        combinedLocations.unshift(result);
-      }
-    });
-    
-    return combinedLocations;
-  }, [filteredLocations, searchResults]);
+  // Only show search results
+  const allLocations = searchResults;
 
   return (
     <div className="bg-white p-4 rounded-lg shadow-md">
@@ -156,19 +104,6 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({
           {searchError}
         </div>
       )}
-      
-      <button 
-        className={`w-full mb-4 flex items-center justify-center p-2 rounded-lg border ${
-          isUsingCurrentLocation ? 'bg-gray-100 text-gray-400' : 'hover:bg-gray-50'
-        }`}
-        onClick={handleUseCurrentLocation}
-        disabled={isUsingCurrentLocation}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-        </svg>
-        {isUsingCurrentLocation ? 'Getting location...' : 'Use current location'}
-      </button>
       
       <div className="space-y-2 max-h-60 overflow-y-auto">
         {allLocations.map(location => (

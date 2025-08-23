@@ -14,13 +14,6 @@ const FarmingTools: React.FC = () => {
   const [currentLocation, setCurrentLocation] = useState<Location | null>(null);
   const [activeTab, setActiveTab] = useState<'calendar' | 'health'>('calendar');
   
-  // Mock saved locations for demo
-  const savedLocations: Location[] = [
-    { id: '1', name: 'Home', lat: 40.7128, lng: -74.0060 },
-    { id: '2', name: 'Work', lat: 40.7484, lng: -73.9857 },
-    { id: '3', name: 'Farm', lat: 40.6782, lng: -73.9442 }
-  ];
-  
   const handleLocationSelect = (location: Location) => {
     setCurrentLocation(location);
   };
@@ -33,7 +26,6 @@ const FarmingTools: React.FC = () => {
         {/* Left sidebar */}
         <div className="lg:col-span-1">
           <LocationSelector 
-            savedLocations={savedLocations}
             onLocationSelect={handleLocationSelect}
             currentLocation={currentLocation || undefined}
           />
