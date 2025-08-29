@@ -66,17 +66,3 @@ EcoShield provides real-time environmental monitoring, risk assessment, and pers
    ```
    uvicorn main:app --reload
    ```
-
-## Project Structure
-```
-EcoShield/
-├── frontend/       → React.js + CopilotKit UI
-├── backend/        → Python FastAPI with agent services
-├── services/       → Tavily, Mem0, Appwrite integrations
-├── public/         → Static assets, icons
-├── scripts/        → Dev tools and test seeders
-├── database/       → Appwrite schema
-├── docs/           → Architecture and usage
-├── .env            → API keys and tokens
-└── README.md
-```
